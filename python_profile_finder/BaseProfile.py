@@ -1,17 +1,21 @@
+"""
+Base classes for user's profile.
+"""
+from exceptions import NotImplementedError
+
+
 class BaseProfile:
     """
-    A Users information that might be using a website. The following
-        are the attributes (further can be added according to need):
+    A User profile information for a website.
 
     Attributes:
-            name: Full name of the user
-            email: Email address of user
+        name (str): Full name of the user
+        email (str): Email address of user
 
     """
     def __init__(self, name, email):
         """
         Base Profile with basic profile information.
-
         """
         self.name = name
         self.email = email
@@ -19,5 +23,5 @@ class BaseProfile:
     def print_user_profile(self):
         """
         Method that prints out all information regarding user profile.
-
         """
+        raise NotImplementedError
