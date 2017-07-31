@@ -15,15 +15,15 @@ class ZameenProfile(BaseProfile):
             country (string) : country of user
 
         """
-        BaseProfile.__init__(self, name, email)
+        self.name = name
+        self.email = email
         self.phone_number = phone_number
         self.address = address
         self.country = country
 
     def print_user_profile(self):
         """
-        Prints out all information present in A PakWheels profile.
-
+        Prints out all information present in A Zameen profile.
         """
         print ('User Name: {name}').format(name=self.name)
         print ('User Email: {email}').format(email=self.email)
