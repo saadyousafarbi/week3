@@ -1,4 +1,5 @@
 import requests
+import datetime
 
 from bs4 import BeautifulSoup
 
@@ -102,8 +103,18 @@ class PakwheelsScraper(BaseScraper):
         """
         profile_info = login_session.get(profile_url).text
         soup = BeautifulSoup(profile_info, 'html.parser')
-        user_name = soup.find('input', {'id': 'user_display_name'}).get('value')
+        user_name = soup.find('input', {'id': 'user_username'}).get('value')
+        name = soup.find('input', {'id': 'user_display_name'}).get('value')
+        spliced_name = name.split()
+        first_name = spliced_name[0]
+        last_name = spliced_name[1]
+        user_gender = soup \
+            .find('select', {'id': 'user_gender'}) \
+            .find('option', selected=True) \
+            .get('value')
+
         user_birthday = soup.find('input', {'id': 'user_birthday'}).get('value')
+        formatted_user_birthday = datetime.datetime.strptime(user_birthday, "%d-%m-%Y").strftime("%Y-%m-%d")
         user_city = soup \
             .find('select', {'id': 'user_city'}) \
             .find('option', selected=True) \
@@ -116,9 +127,12 @@ class PakwheelsScraper(BaseScraper):
 
         user_email = soup.find('input', {'id': 'user_email'}).get('value')
         return {
+            'first_name': first_name,
+            'last_name': last_name,
             'user_name': user_name,
+            'user_gender': user_gender,
             'user_email': user_email,
-            'user_birthday': user_birthday,
+            'user_birthday': formatted_user_birthday,
             'user_city': user_city,
             'user_country': user_country,
         }

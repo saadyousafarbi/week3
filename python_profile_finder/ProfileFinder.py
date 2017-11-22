@@ -43,7 +43,10 @@ if 'pakwheels' in options.website:
     )
     profile_data = pakwheels_scraper.login_and_retrieve_profile()
     pakwheels_profile = PakwheelsProfile(
-        name=profile_data['user_name'],
+        first_name=profile_data['first_name'],
+        last_name=profile_data['last_name'],
+        gender=profile_data['user_gender'],
+        user_name=profile_data['user_name'],
         email=profile_data['user_email'],
         birthday=profile_data['user_birthday'],
         city=profile_data['user_city'],
