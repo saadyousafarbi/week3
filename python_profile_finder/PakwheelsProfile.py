@@ -1,8 +1,5 @@
-from BaseProfile import BaseProfile
-
-
-class PakwheelsProfile(BaseProfile):
-    def __init__(self, name, email, birthday, city, country):
+class PakwheelsProfile:
+    def __init__(self, first_name, last_name, gender, user_name, email, birthday, city, country):
         """
         User profile information on Pakwheels website.
 
@@ -16,7 +13,10 @@ class PakwheelsProfile(BaseProfile):
             country (str): Country of user
 
         """
-        self.name = name
+        self.first_name = first_name
+        self.last_name = last_name
+        self.gender = gender
+        self.user_name = user_name
         self.email = email
         self.birthday = birthday
         self.city = city
@@ -26,7 +26,10 @@ class PakwheelsProfile(BaseProfile):
         """
         Prints out all information present in a Pakwheels profile.
         """
-        print ('User Name: {name}').format(name=self.name)
+        print ('First Name: {first_name}').format(first_name=self.first_name)
+        print ('Last Name: {last_name}').format(last_name=self.last_name)
+        print ('Gender: {gender}').format(gender=self.gender)
+        print ('User Name: {user_name}').format(user_name=self.user_name)
         print ('User Email: {email}').format(email=self.email)
         print ('User Birthday: {birthday}').format(birthday=self.birthday)
         print ('User City: {city}').format(city=self.city)
